@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arthur Tayt-Sohn | Advocacia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0f1c2e;
+      --navy2:  #162236;
+      --gold:   #c8a96e;
+      --gold2:  #a8883e;
+      --cream:  #f5f0e8;
+      --white:  #ffffff;
+      --gray:   #8a8f99;
+      --light:  #f9f7f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(15, 28, 46, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(10,18,30,0.72) 0%, rgba(10,18,30,0.55) 60%, rgba(10,18,30,0.80) 100%),
+        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1800&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding-top: 70px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+      border-left: 2px solid var(--gold);
+      padding-left: 0.8rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.18;
+      max-width: 640px;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 480px;
+      font-weight: 300;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.45);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── DIVIDER ── */
+    .gold-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 1.2rem;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 2rem; }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title.light { color: var(--white); }
+
+    /* ── SOBRE ── */
+    #sobre { background: var(--light); }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .sobre-img-wrap {
+      position: relative;
+    }
+
+    .sobre-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -18px; left: -18px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--gold);
+      z-index: 0;
+    }
+
+    .sobre-img-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    .sobre-text p {
+      color: #3a4455;
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .sobre-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(200, 169, 110, 0.3);
+    }
+
+    .stat-item {}
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 0.3rem;
+    }
+
+    /* ── ÁREAS ── */
+    #areas { background: var(--navy); }
+
+    #areas .section-title { color: var(--white); }
+    #areas .section-tag { color: var(--gold); }
+
+    #areas .intro {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 560px;
+      margin-bottom: 3.5rem;
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+    }
+
+    .area-card {
+      background: var(--navy2);
+      padding: 2.4rem 2rem;
+      border-top: 2px solid transparent;
+      transition: border-color 0.25s, background 0.25s;
+      cursor: default;
+    }
+
+    .area-card:hover {
+      border-top-color: var(--gold);
+      background: #1d2e47;
+    }
+
+    .area-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 1.2rem;
+      opacity: 0.85;
+    }
+
+    .area-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .area-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+    }
+
+    .area-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.52);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── VALORES ── */
+    #valores { background: var(--cream); }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .valor-item {
+      text-align: center;
+    }
+
+    .valor-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: rgba(200,169,110,0.2);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .valor-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+
+    .valor-desc {
+      font-size: 0.9rem;
+      color: #5a6272;
+      font-weight: 300;
+    }
+
+    /* ── CONTATO ── */
+    #contato { background: var(--navy); padding-bottom: 0; }
+
+    #contato .section-title { color: var(--white); }
+    #contato .section-tag { color: var(--gold); }
+
+    .contato-intro {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 500px;
+      margin-bottom: 3rem;
+    }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.8rem; }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(200,169,110,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-item-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-item-value {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+    }
+
+    /* form */
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-group label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+
+    .form-group select option { background: var(--navy2); color: var(--white); }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .btn-submit {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 0.9rem 2rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
+    }
+
+    .btn-submit:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080f1a;
+      padding: 2.5rem 2rem;
+      margin-top: 80px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1rem;
+    }
+
+    .footer-logo span { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-oab {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+    }
+
+    .wa-float svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .sobre-img-wrap { display: none; }
+      .areas-grid { grid-template-columns: 1fr 1fr; }
+      .valores-grid { grid-template-columns: 1fr 1fr; }
+      .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 72px 1.25rem; }
+      .areas-grid { grid-template-columns: 1fr; }
+      .valores-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; flex-direction: column; gap: 0; }
+      .nav-links.open {
+        display: flex;
+        position: absolute;
+        top: 70px; left: 0; right: 0;
+        background: rgba(15,28,46,0.98);
+        padding: 1rem 0;
+      }
+      .nav-links.open a {
+        display: block;
+        padding: 0.85rem 2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .hamburger { display: flex; }
+      .sobre-stats { flex-wrap: wrap; gap: 1.5rem; }
+      footer .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo">Arthur <span>Tayt-Sohn</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#areas">Áreas de Atuação</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Advocacia &amp; Consultoria Jurídica</span>
+    <h1 class="hero-title">
+      Defendendo seus <em>direitos</em> com rigor e compromisso
+    </h1>
+    <p class="hero-sub">
+      Soluções jurídicas completas para pessoas físicas e empresas, com atuação em todas as áreas do direito.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contato" class="btn-primary">Consultar Agora</a>
+      <a href="#areas" class="btn-outline">Nossas Áreas</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <div class="sobre-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+          alt="Dr. Arthur Tayt-Sohn"
+        />
+      </div>
+      <div class="sobre-text">
+        <p class="section-tag">Sobre o Escritório</p>
+        <h2 class="section-title">Uma trajetória construída sobre ética e excelência</h2>
+        <p>
+          O escritório Arthur Tayt-Sohn Advocacia atua com comprometimento total com os interesses dos clientes, unindo expertise técnica e atendimento personalizado em todas as demandas jurídicas.
+        </p>
+        <p>
+          Com formação sólida e vasta experiência prática, o Dr. Arthur Tayt-Sohn oferece assessoria jurídica completa — desde o planejamento preventivo até a defesa em litígios complexos — sempre pautado pela transparência e pela busca incansável do melhor resultado.
+        </p>
+        <p>
+          Acreditamos que o direito é, antes de tudo, uma ferramenta de proteção e justiça. Nossa missão é torná-lo acessível, claro e eficaz para cada cliente que nos confia seu caso.
+        </p>
+        <div class="sobre-stats">
+          <div class="stat-item">
+            <div class="stat-number">+10</div>
+            <div class="stat-label">Anos de Experiência</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">+500</div>
+            <div class="stat-label">Casos Atendidos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Dedicação ao Cliente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS DE ATUAÇÃO -->
+<section id="areas">
+  <div class="section-inner">
+    <p class="section-tag">Especialidades</p>
+    <h2 class="section-title light">Áreas de Atuação</h2>
+    <p class="intro">Atuação completa para proteger seus interesses em qualquer esfera do direito.</p>
+    <div class="areas-grid">
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="area-title">Direito Civil</h3>
+        <p class="area-desc">Contratos, responsabilidade civil, família, sucessões, posse e propriedade. Proteção dos seus direitos nas relações privadas.</p>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <h3 class="area-title">Direito Trabalhista</h3>
+        <p class="area-desc">Defesa de empregados e empregadores, rescisões, verbas trabalhistas, assédio, e compliance trabalhista.</p>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3 class="area-title">Direito de Família</h3>
+        <p class="area-desc">Divórcio, guarda de filhos, alimentos, adoção, reconhecimento de paternidade e inventários.</p>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.95a16 16 0 0 0 6.1 6.1l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3 class="area-title">Direito Empresarial</h3>
+        <p class="area-desc">Constituição de empresas, contratos societários, recuperação judicial e assessoria para negócios.</p>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3 class="area-title">Direito Penal</h3>
+        <p class="area-desc">Defesa criminal em todas as fases do processo, habeas corpus, crimes dolosos e culposos, crimes financeiros.</p>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3 class="area-title">Direito Previdenciário</h3>
+        <p class="area-desc">Aposentadorias, pensões, benefícios por incapacidade, revisões e recursos junto ao INSS e Justiça Federal.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section id="valores">
+  <div class="section-inner" style="text-align:center;">
+    <p class="section-tag" style="text-align:center;">Por que nos escolher</p>
+    <h2 class="section-title" style="text-align:center; margin-bottom:0;">Nossos Princípios</h2>
+    <div class="gold-divider" style="margin-top:1.2rem;"></div>
+    <div class="valores-grid">
+      <div class="valor-item">
+        <div class="valor-number">01</div>
+        <h3 class="valor-title">Ética Inabalável</h3>
+        <p class="valor-desc">Toda atuação é pautada pela mais rigorosa ética profissional, transparência e integridade perante clientes e tribunais.</p>
+      </div>
+      <div class="valor-item">
+        <div class="valor-number">02</div>
+        <h3 class="valor-title">Atendimento Personalizado</h3>
+        <p class="valor-desc">Cada caso é único. Dedicamos atenção individual e estratégia específica para cada cliente e situação.</p>
+      </div>
+      <div class="valor-item">
+        <div class="valor-number">03</div>
+        <h3 class="valor-title">Resultados Concretos</h3>
+        <p class="valor-desc">Foco em soluções práticas e eficientes, sempre buscando o melhor desfecho possível para as demandas dos nossos clientes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner">
+    <p class="section-tag">Entre em Contato</p>
+    <h2 class="section-title">Fale Conosco</h2>
+    <p class="contato-intro">Agende uma consulta ou tire suas dúvidas. Retornamos em até 24 horas.</p>
+
+    <div class="contato-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.8 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.95a16 16 0 0 0 6.1 6.1l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Telefone / WhatsApp</div>
+            <div class="contact-item-value">(XX) XXXXX-XXXX</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">E-mail</div>
+            <div class="contact-item-value">contato@arthurtaytsohn.adv.br</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Endereço</div>
+            <div class="contact-item-value">Rua Exemplo, 123 — Sala 45<br/>Cidade — Estado, CEP 00000-000</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Horário de Atendimento</div>
+            <div class="contact-item-value">Segunda a Sexta, 9h às 18h</div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Seu nome completo" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seu@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" placeholder="(XX) XXXXX-XXXX" />
+        </div>
+        <div class="form-group">
+          <label for="area">Área de Interesse</label>
+          <select id="area">
+            <option value="">Selecione uma área</option>
+            <option>Direito Civil</option>
+            <option>Direito Trabalhista</option>
+            <option>Direito de Família</option>
+            <option>Direito Empresarial</option>
+            <option>Direito Penal</option>
+            <option>Direito Previdenciário</option>
+            <option>Outra</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" placeholder="Descreva brevemente sua situação..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar Mensagem</button>
+        <p id="form-success" style="color:#c8a96e;font-size:0.88rem;display:none;">
+          ✓ Mensagem enviada! Entraremos em contato em breve.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer inside contato section -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Arthur <span>Tayt-Sohn</span> Advocacia</div>
+      <div class="footer-oab">OAB/XX 000.000</div>
+      <div class="footer-copy">© 2026 — Todos os direitos reservados</div>
+    </div>
+  </footer>
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5500000000000" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.05 1.999C6.495 1.999 2 6.494 2 12.05c0 1.85.487 3.617 1.34 5.15L2 22l4.918-1.29A10.02 10.02 0 0 0 12.05 22.1c5.556 0 10.05-4.495 10.05-10.05S17.606 2 12.05 2zm0 18.316a8.267 8.267 0 0 1-4.21-1.152l-.302-.18-3.12.818.833-3.048-.198-.313A8.271 8.271 0 0 1 3.784 12.05c0-4.563 3.712-8.275 8.275-8.275s8.275 3.712 8.275 8.275-3.712 8.266-8.284 8.266z"/>
+  </svg>
+</a>
+
+<script>
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Form mock submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => document.getElementById('form-success').style.display = 'none', 5000);
+  }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navAs    = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
